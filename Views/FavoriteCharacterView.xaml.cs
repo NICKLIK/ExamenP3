@@ -1,9 +1,15 @@
-namespace ExamenP3.Views;
-
-public partial class FavoriteCharacterView : ContentPage
+namespace ExamenP3.Views
 {
-    public FavoriteCharacterView()
+    public partial class FavoriteCharacterView : ContentPage
     {
-        InitializeComponent();
+        public FavoriteCharacterView()
+        {
+            InitializeComponent();
+        }
+
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

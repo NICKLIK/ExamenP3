@@ -4,8 +4,18 @@
              x:Class="ExamenP3.Views.FavoriteCharacterView"
              Title="Favorite Character">
 
-    <StackLayout Padding="20">
-        <Image Source="favorite_character.jpg" />
-        <Label Text="A mi, Jorge Negrete, me gusta este personaje porque..." />
+    <StackLayout Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+        <!-- Ajustar el tamaño de la imagen -->
+        <Image Source="nutty.jpg" WidthRequest="200" HeightRequest="200" 
+               HorizontalOptions="Center" VerticalOptions="Center" />
+
+        <Label Text="A mi, Jorge Negrete, me gusta este personaje porque es muy chistoso en todas las ocaciones que aparece en la serie. Me gusta mucho el color verde y su diseño asi que Nutty me agrado a primera vista "
+               HorizontalOptions="Center" VerticalOptions="Center" 
+               Margin="0,20,0,20" />
+
+        <!-- Botón para regresar a la página anterior -->
+        <Button Text="Volver" Clicked="OnBackButtonClicked" 
+                HorizontalOptions="Center" VerticalOptions="EndAndExpand" />
     </StackLayout>
 </ContentPage>
+
