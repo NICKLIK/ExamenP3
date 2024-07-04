@@ -1,0 +1,73 @@
+﻿using ExamenP3.Repositorios;
+using ExamenP3.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace ExamenP3.ViewModels
+{
+    public class CountryViewModel : INotifyPropertyChanged
+    {
+        public ObservableCollection<Country> Countries { get; set; }
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+        public ICommand GetCountriesCommand { get; }
+
+        public CountryViewModel()
+        {
+            Countries = new ObservableCollection<Country>();
+            GetCountriesCommand = new Command(async () => await GetCountries());
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async Task GetCountries()
+        {
+            var countries = await App.CountryRepo.GetCountriesFromApi();
+            foreach (var country in countries)
+            {
+                country.Code = GenerateCode(country.Name);
+                App.CountryRepo.SaveCountry(country);
+            }
+            LoadCountries();
+        }
+
+        private string GenerateCode(string name)
+        {
+            Random random = new Random();
+            int number = random.Next(1000, 2000);
+            string initials = string.Concat(name.Split(' ').Select(n => n[0]));
+            return initials + number;
+        }
+
+        private void LoadCountries()
+        {
+            var countries = App.CountryRepo.GetSavedCountries();
+            Countries.Clear();
+            foreach (var country in countries)
+            {
+                Countries.Add(country);
+            }
+        }
+    }
+}
+
