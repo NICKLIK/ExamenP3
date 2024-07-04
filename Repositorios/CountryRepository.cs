@@ -1,4 +1,4 @@
-﻿using CountryApp.Models;
+﻿using ExamenP3.Models;
 using Newtonsoft.Json;
 using SQLite;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CountryApp.Repositorios
+namespace ExamenP3.Repositorios
 {
     public class CountryRepository
     {
@@ -48,3 +48,4 @@ namespace CountryApp.Repositorios
         }
     }
 }
+

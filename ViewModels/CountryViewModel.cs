@@ -54,7 +54,7 @@ namespace ExamenP3.ViewModels
             var countries = await App.CountryRepo.GetCountriesFromApi();
             foreach (var country in countries)
             {
-                country.Code = GenerateCode(country.Name);
+                country.Codigo = GenerateCode(country.Nombre);
                 App.CountryRepo.SaveCountry(country);
             }
             LoadCountries();
