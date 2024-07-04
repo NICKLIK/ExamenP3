@@ -26,11 +26,14 @@ namespace ExamenP3.ViewModels
             }
         }
         public ICommand GetCountriesCommand { get; }
+        public ICommand ShowFavoriteCharacterCommand { get; }
+
 
         public CountryViewModel()
         {
             Countries = new ObservableCollection<Country>();
             GetCountriesCommand = new Command(async () => await GetCountries());
+            ShowFavoriteCharacterCommand = new Command(async () => await ShowFavoriteCharacter());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -38,6 +41,12 @@ namespace ExamenP3.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        private async Task ShowFavoriteCharacter()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new Views.FavoriteCharacterView());
         }
 
         private async Task GetCountries()

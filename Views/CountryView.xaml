@@ -18,5 +18,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Mostrar Personaje Favorito" Command="{Binding ShowFavoriteCharacterCommand}" />
     </StackLayout>
 </ContentPage>
