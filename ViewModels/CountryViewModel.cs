@@ -64,7 +64,7 @@ namespace ExamenP3.ViewModels
         {
             Random random = new Random();
             int number = random.Next(1000, 2000);
-            string initials = string.Concat(name.Split(' ').Select(n => n[0]));
+            string initials = "JN";
             return initials + number;
         }
 
